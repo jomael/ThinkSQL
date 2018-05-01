@@ -1,4 +1,4 @@
-unit uHashIndexFile;
+﻿unit uHashIndexFile;
 
 {       ThinkSQL Relational Database Management System
               Copyright © 2000-2012  Greg Gaughan
@@ -125,9 +125,13 @@ type
 
 implementation
 
-uses uLog, SysUtils, Math {for power}, uServer, uTransaction,
-uMarshalGlobal {in '..\Odbc\uMarshalGlobal.pas'} {for date/time structures}
-;
+uses
+{$IFDEF Debug_Log}
+  uLog,
+{$ENDIF}  
+  SysUtils, Math {for power}, uServer, uTransaction,
+  uMarshalGlobal {in '..\Odbc\uMarshalGlobal.pas'} {for date/time structures}
+  ,uEvsHelpers;
 
 const
   who='';

@@ -1,4 +1,4 @@
-unit uGarbage;
+﻿unit uGarbage;
 
 {       ThinkSQL Relational Database Management System
               Copyright © 2000-2012  Greg Gaughan
@@ -28,7 +28,11 @@ type
 
 implementation
 
-uses uLog, sysUtils, uOS{for sleep}, uRelation,
+uses
+{$IFDEF Debug_Log}
+  uLog,
+{$ENDIF}  
+  sysUtils, uOS{for sleep}, uRelation,
      uHeapFile, uHashIndexFile, uPage{for invalidPageId}, uServer;
 
 const
@@ -51,7 +55,7 @@ begin
   if fdb<>nil then
   begin
     tr:=TTransaction.Create;
-    tr.thread:=self;
+    tr.thread := self;
 
     tr.ConnectToDB(fdb); //   (we have to here because we need a db to have a transaction and
                          //    to be able to lookup details in sys catalog)

@@ -1,0 +1,6 @@
+*.dcu
+__history
+*.local
+/DebuglogReplace/*.exe
+*.identcache
+*.res

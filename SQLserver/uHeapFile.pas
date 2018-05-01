@@ -1,4 +1,4 @@
-unit uHeapFile;
+﻿unit uHeapFile;
 
 {       ThinkSQL Relational Database Management System
               Copyright © 2000-2012  Greg Gaughan
@@ -73,7 +73,12 @@ const
 
 implementation
 
-uses uLog, sysUtils, uServer, uTransaction;
+uses
+{$IFDEF Debug_Log}
+  uLog,
+{$ENDIF}  
+  sysUtils, uServer, uTransaction
+  ,uEvsHelpers;
 
 const
   where='uHeapFile';

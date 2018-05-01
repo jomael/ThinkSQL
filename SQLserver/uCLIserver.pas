@@ -1,10 +1,12 @@
-unit uCLIserver;
+﻿unit uCLIserver;
 
 {       ThinkSQL Relational Database Management System
               Copyright © 2000-2012  Greg Gaughan
                   See LICENCE.txt for details
 }
-
+{$I Defs.inc}
+{$IFDEF Debug_Log} {$Undef Debug_Log} {$ENDIF}
+{.$DEFINE DEBUG_LOG}
 {$DEFINE DEBUGDETAIL}
 {$DEFINE DEBUGDETAIL2}  //show client SQL
 
@@ -91,7 +93,10 @@ function SQLGetConnectAttr(th:TCMthread):integer;
 
 implementation
 
-uses uLog,
+uses
+{$IFDEF Debug_Log}
+  uLog,
+{$ENDIF}  
      uMarshal {in '..\Odbc\uMarshal.pas'}, uMarshalGlobal {in '..\Odbc\uMarshalGlobal.pas'},
      sysUtils, uGlobal, uGlobalDef,
      uParser, uProcessor{for executePlan}, uIterator, {for Fetch=plan.next}
